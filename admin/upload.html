@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Bumal YotePya</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .admin-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Myanmar', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .upload-btn {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-btn:hover {
+            background: linear-gradient(45deg, #38a169, #2f855a);
+            transform: translateY(-2px);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+        
+        .success-message {
+            background: #c6f6d5;
+            color: #22543d;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border-left: 4px solid #48bb78;
+            display: none;
+        }
+        
+        .comic-list {
+            margin-top: 2rem;
+        }
+        
+        .comic-item {
+            background: #f7fafc;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .delete-btn {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Bumal YotePya - Admin Panel</h1>
+            <p>စာအုပ်အသစ်များစီမံခန့်ခွဲရန်</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="../index.html" class="back-btn">← Website သို့ပြန်သွားရန်</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="admin-container">
+            <h2>📚 စာအုပ်အသစ်တင်ရန်</h2>
+            
+            <form id="uploadForm">
+                <div class="form-group">
+                    <label for="comicTitle">စာအုပ်ခေါင်းစဉ် *</label>
+                    <input type="text" id="comicTitle" placeholder="ဥပမာ - မြန်မာ့ဒဏ္ဍာရီများ" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comicDescription">စာအုပ်အကြောင်း</label>
+                    <textarea id="comicDescription" rows="3" placeholder="စာအုပ်အကြောင်းအကျဉ်းရေးပါ..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pdfUrl">Google Drive PDF Link *</label>
+                    <input type="url" id="pdfUrl" placeholder="https://drive.google.com/file/d/.../view" required>
+                    <small style="color: #718096;">Google Drive မှ PDF link ထည့်ပါ (share link ဖြစ်ရမည်)</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pageCount">စာမျက်နှာအရေအတွက်</label>
+                    <input type="number" id="pageCount" placeholder="ဥပမာ - 45" min="1" value="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="coverEmoji">Cover Emoji</label>
+                    <input type="text" id="coverEmoji" placeholder="ဥပမာ - 📖, 🏞️, 🐉" value="📖">
+                </div>
+                
+                <button type="submit" class="upload-btn">✅ စာအုပ်တင်ရန်</button>
+            </form>
+            
+            <div id="successMessage" class="success-message" style="display: none;">
+                🎉 စာအုပ်အောင်မြင်စွာတင်ပြီးပါပြီ!
+            </div>
+        </div>
+
+        <!-- Current Comics List -->
+        <div class="admin-container">
+            <h3>📋 လက်ရှိစာအုပ်များ</h3>
+            <div id="currentComics" class="comic-list">
+                <p>စာအုပ်များရှာဖွေနေသည်...</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
